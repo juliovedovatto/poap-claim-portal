@@ -1,0 +1,6 @@
+[install]
+# Bun workspaces are linked automatically. Hoisted linker helps NestJS/native deps.
+linker = "hoisted"
+
+[test]
+# Placeholder for bun test configuration (added in later steps).
