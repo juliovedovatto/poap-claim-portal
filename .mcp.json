@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "bunx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "REPLACE_WITH_YOUR_GITHUB_TOKEN"
+      }
+    },
+    "supabase": {
+      "command": "bunx",
+      "args": ["-y", "@supabase/mcp-server-supabase@latest", "--read-only"],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "REPLACE_WITH_YOUR_SUPABASE_ACCESS_TOKEN",
+        "SUPABASE_PROJECT_REF": "REPLACE_WITH_YOUR_PROJECT_REF"
+      }
+    },
+    "context7": {
+      "command": "bunx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    },
+    "playwright": {
+      "command": "bunx",
+      "args": ["-y", "@executeautomation/playwright-mcp-server@latest"]
+    },
+    "serena": {
+      "command": "bunx",
+      "args": ["-y", "@serena/mcp@latest", "--context", "ide-assistant"]
+    }
+  }
+}
