@@ -3,7 +3,6 @@
  * PostToolUse hook (Claude Code) — runs AFTER Edit, Write.
  * Formats the edited file with Prettier. PostToolUse cannot block; stderr on exit 0
  * goes to the debug log only. Exit 2 surfaces stderr to Claude (reserved for real warnings).
- * NOTE: this hook does NOT fire when a Bash command rewrites the file (FileChanged covers that).
  */
 const input = JSON.parse(await Bun.stdin.text());
 const tool: string = input.tool_name;

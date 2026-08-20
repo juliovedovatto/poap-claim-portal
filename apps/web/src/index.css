@@ -1,14 +1,12 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --color-brand-50: #eef6ff;
   --color-brand-500: #3b82f6;
   --color-brand-600: #2563eb;
   --color-surface: #0b1020;
   --color-surface-muted: #111a2e;
   --color-ink: #e5e7eb;
   --color-ink-muted: #9ca3af;
-  --color-accent: #22d3ee;
   --font-sans: ui-sans-serif, system-ui, -apple-system, sans-serif;
   --radius-card: 1rem;
 }

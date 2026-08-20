@@ -9,8 +9,8 @@ export class SupabaseService {
 
   constructor() {
     const url = process.env.SUPABASE_URL ?? 'https://demo.supabase.co';
-    const key =
-      process.env.SUPABASE_SERVICE_ROLE_KEY ?? 'demo-service-role-key';
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY ?? 'demo-service-role-key';
+
     this.client = createClient(url, key);
   }
 }

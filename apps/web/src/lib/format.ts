@@ -17,7 +17,9 @@ export function formatEventDate(iso: string): string {
   if (Number.isNaN(date.getTime())) {
     return 'Date unavailable';
   }
-  return date.toLocaleDateString(undefined, {
+
+  return date.toLocaleDateString('en-US', {
+    timeZone: 'UTC',
     year: 'numeric',
     month: 'long',
     day: 'numeric',

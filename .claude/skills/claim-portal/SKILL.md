@@ -12,9 +12,17 @@ license: MIT
 - `packages/contracts` and `packages/shared` are documentation-only stubs (do NOT add code there).
 
 ## The claim flow
+
+**Implemented flow (this demo):**
+1. User connects a wallet in `apps/web` (`useAccount`) — the wallet address is the attendee identity.
+2. `apps/web` fetches events from the NestJS API (`GET /events`).
+3. The claim button POSTs `{ eventId, attendee }` to the API (`POST /claims`).
+4. The API writes an idempotent claim receipt (in-memory) and returns it.
+
+**Documented target architecture (out of scope / contract layer):**
 1. User signs SIWE in `apps/web` (wagmi `useSignMessage`) → `apps/api` verifies → mints a Supabase JWT with custom claims (`event_id`).
 2. User fetches an event + their Merkle proof from `apps/api`.
-3. User triggers the gasless claim: `apps/web` builds a UserOperation; a Pimlico verifying paymaster sponsors gas; the entrypoint calls `Badge.claim(eventId, proof)`.
+3. Gasless claim: `apps/web` builds a UserOperation; a Pimlico verifying paymaster sponsors gas; the entrypoint calls `Badge.claim(eventId, proof)` (contract layer in `packages/contracts`).
 4. On `Claimed` event, `apps/api` writes a `claim_receipts` row (RLS: only the event organizer / the attendee themselves can read their own).
 5. Dashboard charts claims per event.
 

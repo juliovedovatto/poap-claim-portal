@@ -4,7 +4,19 @@ Gasless POAP / NFT claim portal — a demo monorepo built to showcase real Claud
 
 ## What it is
 
-A sponsor-funded, account-abstraction NFT claim portal. Users sign in with SIWE, get a free soulbound POAP, and an off-chain dashboard tracks attendance. Built as a job-interview demonstration of agentic coding with Claude: skills, subagents, hooks, MCP servers, and a documented commit history.
+A demo NFT claim portal and honest job-interview artifact for agentic coding with Claude: skills, subagents, hooks, MCP servers, and a documented commit history.
+
+**What IS implemented:**
+- **Wallet connect** via wagmi (`apps/web`) — the connected wallet address is the attendee identity (the web3 tie-in).
+- **API-backed event list** — `apps/web` fetches events from the NestJS API (`GET /events`).
+- **Idempotent claim receipts** — the claim button POSTs `{ eventId, attendee }` to the API (`POST /claims`), which writes an in-memory claim receipt.
+
+**What is DOCUMENTED as target architecture but OUT OF SCOPE for this demo:**
+- **SIWE JWT auth** (`useSignMessage` → Supabase JWT with custom claims).
+- **The on-chain gasless ERC-4337 mint** — a UserOperation sponsored by a Pimlico paymaster calling `Badge.claim`, via the contract layer in `packages/contracts`.
+- An off-chain attendance **dashboard**.
+
+The web app and API are wired together into one flow; there is no real on-chain mint in this demo.
 
 ## Tech stack
 
@@ -64,9 +76,9 @@ bun run typecheck      # per-app typecheck via bun --filter
 
 This repo is the artifact of an agentic SDLC run with Claude Code:
 
-- **Skills** — `superpowers` (agentic methodology), `frontend-design` (non-generic UI), `ponytail` (YAGNI enforcer), `plugin-dev` (authoring), plus a custom repo skill `claim-portal`.
+- **Skills** — `superpowers` (agentic methodology), `frontend-design` (non-generic UI), `ponytail` (YAGNI enforcer), `plugin-dev` (authoring), plus a custom repo skill `claim-portal`. The `claim-portal` skill is committed in this repo (`.claude/skills/claim-portal/`); `superpowers`, `frontend-design`, `ponytail`, and `plugin-dev` are external/global skills used during the build and are not committed here.
 - **Subagents** — `scout` (recon), `context-builder` (requirements), `researcher` (external docs), `planner` (multi-step plans), `coder` (code), `worker` (scaffolding/docs), `reviewer` (review), `qa` (validation), `oracle` (second opinions).
-- **Hooks** — `PreToolUse` (block destructive commands, path validation), `PostToolUse` (prettier + typecheck on edit), `Stop` (refuse "done" until lint/typecheck pass).
+- **Hooks** — `PreToolUse` (validation), `PostToolUse` (prettier on edit), `Stop` (refuse "done" until lint/typecheck/tests pass).
 - **MCP servers** — GitHub, Supabase, Context7, Playwright, Serena.
 - **CLAUDE.md** — project conventions auto-loaded each session.
 
@@ -82,7 +94,7 @@ Demo only. No real funds, no mainnet contracts. Solidity contracts are documenta
 
 - **PreToolUse** — runs before `Bash`, `Edit`, and `Write`. Blocks destructive Bash commands (`git push`, `git reset --hard`, `git commit --no-verify`, `rm -rf /`, `dd` to block devices) and writes to do-not-touch paths (`packages/contracts`, `packages/shared`, `.git`, `bun.lock`, real `.env` files).
 - **PostToolUse** — runs after `Edit`/`Write` and formats the edited file with Prettier (format-on-save).
-- **Stop** — green gate: once deps are installed, blocks finishing the turn until `bun run lint:root` and `bun run typecheck` pass.
+- **Stop** — green gate: once deps are installed, blocks finishing the turn until `bun run lint:root`, `bun run typecheck`, `bun run test`, and `bun run typecheck:hooks` pass.
 
 Hooks are committed in the repo and run via `bun ${CLAUDE_PROJECT_DIR}/.claude/hooks/*.ts` (absolute paths, so they work from any cwd).
 

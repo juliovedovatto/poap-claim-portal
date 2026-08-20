@@ -73,5 +73,5 @@ Solidity contracts are OUT OF SCOPE (doc-only stub). On-chain interactions happe
 
 ## Deeper docs
 
-- `@apps/web/CLAUDE.md`, `@apps/api/CLAUDE.md` (added per-module in later steps).
+- `@apps/web/CLAUDE.md`, `@apps/api/CLAUDE.md`.
 - `@packages/contracts/README.md`, `@packages/shared/README.md`.

@@ -49,7 +49,7 @@ export class ClaimsService {
   private readonly receipts = new Map<string, ClaimReceipt>();
 
   getEvents(): ClaimEvent[] {
-    return this.events;
+    return [...this.events];
   }
 
   getEventById(id: number): ClaimEvent {
@@ -63,18 +63,22 @@ export class ClaimsService {
   createClaim(eventId: number, attendee: string): ClaimReceipt {
     // Reject claims for unknown events (404 path).
     this.getEventById(eventId);
+
     const key = `${eventId}:${attendee}`;
     const existing = this.receipts.get(key);
     if (existing) {
       return existing;
     }
+
     const receipt: ClaimReceipt = {
       eventId,
       attendee,
       claimedAt: new Date().toISOString(),
       txHash: null,
     };
+
     this.receipts.set(key, receipt);
+
     return receipt;
   }
 }
