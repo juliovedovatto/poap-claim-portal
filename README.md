@@ -18,6 +18,23 @@ A demo NFT claim portal and honest job-interview artifact for agentic coding wit
 
 The web app and API are wired together into one flow; there is no real on-chain mint in this demo.
 
+## Features
+
+The current build ships the claim flow. The features below are next.
+
+- **Organizer dashboard** — event creators see how many attendees claimed a POAP.
+- **Raffle** — a transparent giveaway among the holders of a given POAP.
+- **Vote** — multiple-choice polls for the holders of a given POAP.
+- **Attendance portfolio** — a wallet's claimed POAPs form an on-chain record of the events it attended.
+
+## Roadmap
+
+- **POAP chat** — a token-gated room for the holders of a given POAP.
+- **Community activity** — POAPs surface the most active members of a community.
+- **Token-gated social** — holders with shared POAPs connect and talk.
+- **More claim methods** — in person, secret word, ETH address, magic link.
+- **Cross-industry events** — tech, finance, concerts, sports.
+
 ## Tech stack
 
 - **Bun 1.3.14** + workspaces (monorepo runtime, package manager, test runner)
