@@ -1,0 +1,5 @@
+# Local environment (gitignored) — copied into each new worktree so the API boots.
+# .worktreeinclude uses .gitignore syntax; only files that are BOTH matched and
+# gitignored are copied. Tracked files are never duplicated.
+apps/api/.env
+apps/api/.env.local
