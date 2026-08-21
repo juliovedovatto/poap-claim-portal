@@ -71,6 +71,8 @@ Solidity contracts are OUT OF SCOPE (doc-only stub). On-chain interactions happe
 - `qa` — validation/screenshots.
 - `oracle` — second opinions on complex/judgment calls.
 
+Each agent's `model` is set in `.claude/agents/*.md` (Haiku = read/recon, Sonnet = write/validate, Opus = judgment) to save tokens. Orchestration playbooks + the model routing table live in `.claude/workflows/`.
+
 ## Deeper docs
 
 - `@apps/web/CLAUDE.md`, `@apps/api/CLAUDE.md`.
