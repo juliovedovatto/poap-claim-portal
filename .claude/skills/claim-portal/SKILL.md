@@ -7,7 +7,7 @@ license: MIT
 # claim-portal skill
 
 ## Architecture
-- `apps/web` — React 18 + Vite + Tailwind v4 (CSS `@theme` tokens in `src/index.css`, NO JS config) + wagmi v2 + viem v2. SIWE sign-in, event list, claim button, dashboard.
+- `apps/web` — React 18 + Vite + Tailwind v4 (CSS `@theme` tokens in `src/index.css`, NO JS config) + wagmi v2 + viem v2. Wallet connect, event list, claim button.
 - `apps/api` — NestJS on Bun + Supabase (Postgres + RLS). Owns off-chain state: events, attendees, claim receipts.
 - `packages/contracts` and `packages/shared` are documentation-only stubs (do NOT add code there).
 
