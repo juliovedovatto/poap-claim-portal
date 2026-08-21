@@ -40,8 +40,8 @@ poap-claim-portal/
 ├── .gitignore / .gitattributes
 ├── .claude/
 │   ├── settings.json      # hooks (PreToolUse / PostToolUse / Stop)
-│   ├── agents/            # subagent roster
-│   └── skills/claim-portal/  # custom repo skill
+│   ├── agents/            # subagent roster (coder, reviewer, qa, ...)
+│   └── skills/            # 10 committed skills (see "Built with Claude AI")
 ├── apps/
 │   ├── web/               # React 18 + Vite + Tailwind v4 + wagmi/viem
 │   └── api/               # NestJS on Bun + Supabase
@@ -76,10 +76,11 @@ bun run typecheck      # per-app typecheck via bun --filter
 
 This repo is the artifact of an agentic SDLC run with Claude Code:
 
-- **Skills** — `superpowers` (agentic methodology), `frontend-design` (non-generic UI), `ponytail` (YAGNI enforcer), `plugin-dev` (authoring), plus a custom repo skill `claim-portal`. The `claim-portal` skill is committed in this repo (`.claude/skills/claim-portal/`); `superpowers`, `frontend-design`, `ponytail`, and `plugin-dev` are external/global skills used during the build and are not committed here.
+- **Skills** — committed in `.claude/skills/`: `claim-portal` (repo-specific claim/event architecture), `ponytail` (write-less / YAGNI ladder), `decompose` (clarify → break down → dispatch agents), `jira-decompose` (read a Jira ticket → run decompose), `handoff` (session-continuity transfer docs), `supabase-postgres-best-practices` (vendored from Supabase — 33 references), `agent-browser` (Playwright MCP UI verification), `playwright-skill` (code-first Playwright automation, vendored from lackeyjb), `react-best-practices` (vendored from Vercel — 70 rules), `nestjs-best-practices` (vendored from Kadajett — 40 rules). External/global skills used during the build but not committed here: `superpowers`, `frontend-design`, `plugin-dev`.
 - **Subagents** — `scout` (recon), `context-builder` (requirements), `researcher` (external docs), `planner` (multi-step plans), `coder` (code), `worker` (scaffolding/docs), `reviewer` (review), `qa` (validation), `oracle` (second opinions).
+- **Built-in skills** — the `coder` agent runs the bundled `/code-review` (formerly `/simplify`) review pass plus the ponytail YAGNI ladder before finishing.
 - **Hooks** — `PreToolUse` (validation), `PostToolUse` (prettier on edit), `Stop` (refuse "done" until lint/typecheck/tests pass).
-- **MCP servers** — GitHub, Supabase, Context7, Playwright, Serena.
+- **MCP servers** — GitHub, Supabase, Context7, Playwright, Serena, Jira (Atlassian).
 - **CLAUDE.md** — project conventions auto-loaded each session.
 
 The commit history documents the step-by-step build: scaffolding → tooling → apps → validation.
@@ -105,5 +106,6 @@ Hooks are committed in the repo and run via `bun ${CLAUDE_PROJECT_DIR}/.claude/h
 - **Context7** — live library/framework docs to stop hallucinated APIs.
 - **Playwright** — real browser automation and E2E UI verification.
 - **Serena** — semantic code navigation across the monorepo.
+- **Jira (Atlassian)** — read Jira issues/tickets via the official Atlassian remote MCP (OAuth, no secrets in repo). Used by the `jira-decompose` skill.
 
 > **Note:** secret values in `.mcp.json` are placeholders — replace them with real tokens and never commit real secrets. Hooks committed in `.claude/settings.json` execute without a trust dialog on a cloned repo in `claude -p`/SDK sessions; this is a deliberate, reviewed choice for this demo.
