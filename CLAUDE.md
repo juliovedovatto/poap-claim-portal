@@ -4,6 +4,10 @@
 
 Gasless POAP / NFT claim portal — a Bun-workspace monorepo and interview demo of an agentic SDLC with Claude.
 
+## Communication
+
+- When reporting information to me, be extremely concise and sacrifice grammar for the sake of concision.
+
 ## Runtime & versions
 
 - Bun 1.3.14 (runtime + package manager + test runner), Node-compat enabled.
