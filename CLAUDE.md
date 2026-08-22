@@ -77,6 +77,20 @@ Solidity contracts are OUT OF SCOPE (doc-only stub). On-chain interactions happe
 
 Each agent's `model` is set in `.claude/agents/*.md` (Haiku = read/recon, Sonnet = write/validate, Opus = judgment) to save tokens. Orchestration playbooks + the model routing table live in `.claude/workflows/`.
 
+### Effort by task class
+
+| Task class | Model | Effort |
+| --- | --- | --- |
+| scout | haiku | med |
+| context-builder | haiku | med |
+| researcher | sonnet | high |
+| planner | opus | max |
+| coder | sonnet | high |
+| worker | sonnet | med |
+| reviewer | sonnet | high |
+| qa | sonnet | high |
+| oracle | opus | max |
+
 ## Deeper docs
 
 - `@apps/web/CLAUDE.md`, `@apps/api/CLAUDE.md`.
